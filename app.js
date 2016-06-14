@@ -31,6 +31,13 @@ app.use(esiMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/book/:isbn', function (req, res, next) {
+
+    req.esiOptions = {
+        headers: {
+            'Accept': 'text/html'
+        }
+    };
+
     goodGuy('https://book-catalog-proxy.herokuapp.com/book?isbn=' + req.params.isbn).then(function (response) {
         var body = JSON.parse(response.body);
 

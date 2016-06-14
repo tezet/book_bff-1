@@ -4,8 +4,18 @@
 <body> 
 <header><esi:include src="https://kwasniew.github.io/menu.html" /></header>
  {{$content}}  {{/content}} 
-<footer><esi:include src="https://kwasniew.github.io/footer.html" /></footer>
+<footer><a class="include" href="https://kwasniew.github.io/footer.html">Footer</a></footer>
  
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    $('.include').each(function() {
+        var element = $(this);
+        $.get(element.attr('href')).done(function(data) {
+            element.replaceWith(data);
+        });
+    });
+</script>
 </body>
  
 </html>
