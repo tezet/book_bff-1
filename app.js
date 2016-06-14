@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var goodGuy = require('good-guy-http')({maxRetries: 3});
+var jp = require('jsonpath');
 
 var app = express();
 
@@ -27,8 +28,8 @@ app.get('/book/:isbn', function (req, res, next) {
     goodGuy('https://book-catalog-proxy.herokuapp.com/book?isbn=' + req.params.isbn).then(function (response) {
         var body = JSON.parse(response.body);
 
-        var title = body.items[0].volumeInfo.title;
-        var cover = body.items[0].volumeInfo.imageLinks.thumbnail;
+        var title = jp.value(body, '$..title');
+        var cover = jp.value(body, '$..thumbnail');
 
         res.render('book', {title: title, cover: cover});
     }).catch(next);
