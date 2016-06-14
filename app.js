@@ -37,7 +37,9 @@ app.get('/book/:isbn', function (req, res, next) {
         var title = jp.value(body, '$..title');
         var cover = jp.value(body, '$..thumbnail');
 
-        res.render('book', {partials: {layout: 'layout_file'}, title: title, cover: cover});;
+        var availabilityUrl = (process.env.INVENTORY_SERVICE || 'https://book-inventory-us-prod.herokuapp.com/stock/')+req.params.isbn;
+
+        res.render('book', {partials: {layout: 'layout_file'}, title: title, cover: cover, availabilityUrl: availabilityUrl});
     }).catch(next);
 });
 

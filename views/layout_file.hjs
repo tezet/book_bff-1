@@ -2,7 +2,7 @@
 <head></head>
  
 <body> 
-<header><esi:include src="https://kwasniew.github.io/menu1.html" /></header>
+<header><esi:include src="https://kwasniew.github.io/menu.html" /></header>
  {{$content}}  {{/content}} 
 <footer><esi:include src="https://kwasniew.github.io/footer.html" /></footer>
  

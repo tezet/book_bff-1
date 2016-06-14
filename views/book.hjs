@@ -2,5 +2,6 @@
  {{$content}}
  <img src="{{cover}}">
  <div>{{title}}</div>
+<esi:include src="{{availabilityUrl}}" />
  {{/content}}
  {{/layout}}
