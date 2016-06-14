@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var esiMiddleware = require('nodesi').middleware;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -22,6 +23,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(esiMiddleware());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/book/:isbn', function (req, res, next) {
@@ -31,7 +33,7 @@ app.get('/book/:isbn', function (req, res, next) {
         var title = jp.value(body, '$..title');
         var cover = jp.value(body, '$..thumbnail');
 
-        res.render('book', {title: title, cover: cover});
+        res.render('book', {partials: {layout: 'layout_file'}, title: title, cover: cover});;
     }).catch(next);
 });
 
