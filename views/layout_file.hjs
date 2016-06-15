@@ -1,5 +1,7 @@
 <html> 
-<head></head>
+<head>
+    <meta x-request-id="{{correlationId}}">
+</head>
  
 <body> 
 <header><esi:include src="https://kwasniew.github.io/menu.html" /></header>

@@ -48,7 +48,7 @@ app.get('/book/:isbn', function (req, res, next) {
 
         var availabilityUrl = (process.env.INVENTORY_SERVICE || 'https://book-inventory-us-prod.herokuapp.com/stock/')+req.params.isbn;
 
-        res.render('book', {partials: {layout: 'layout_file'}, title: title, cover: cover, availabilityUrl: availabilityUrl});
+        res.render('book', {partials: {layout: 'layout_file'}, title: title, cover: cover, availabilityUrl: availabilityUrl, correlationId: correlationId});
     }).catch(next);
 });
 
