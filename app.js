@@ -31,10 +31,12 @@ app.use(esiMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/book/:isbn', function (req, res, next) {
+    var correlationId = req.headers['x-request-id'] || Math.random();
 
     req.esiOptions = {
         headers: {
-            'Accept': 'text/html'
+            'Accept': 'text/html',
+            'X-Request-ID': correlationId
         }
     };
 
